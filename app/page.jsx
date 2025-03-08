@@ -1,25 +1,30 @@
-// Components are functions that return some JSX
-
-// JSX is a javascript syntax in React to create our HTML elements
 
 "use client";
 
-import { useState } from "react" // we use this to add state to our components
-// state lets us keep track of changing data and show it in the component
+import { useState } from "react" 
+import Form from "./Components/Form"
+import Table from "./Components/Table"
+import "./styles/home.css"
 
 function HomePage(){
 
-    // create some state keeping track of the changing count
-    const [count, setCount] = useState(0)
     
+    const [favLinks, setFavLinks] = useState([])
+
+    const handleNewLink = (link) => {
+        setFavLinks([...favLinks, link])
+        console.log(favLinks)
+    }   
 
     return (
-        <div>
-            <h1>Counter: {count}</h1>
-            <button onClick={()=>{
-                // write some javascript for this function to call
-                setCount(count + 1)
-            }}> Add One </button> 
+        <div className="container">
+  
+            <h1> Here you can see your Links</h1>
+
+            <Form submitFavLink = {handleNewLink}/>
+            <Table links = {favLinks}/>
+       
+            
         </div>
     )
 }
