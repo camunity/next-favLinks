@@ -1,7 +1,12 @@
+import { useState } from "react"
 
 function Table(props){
+    const [tempFavLinks, setTempFavLinks] = useState([])
 
-    function handleDelete(){
+
+    function handleDelete(e){
+        let arryIndex = e.target.id
+        setTempFavLinks(props.data.splice(arryIndex, 1))
     }
 
     return(
@@ -12,29 +17,11 @@ function Table(props){
                 <tr>
                     <th>Name</th>
                     <th>URL</th>
-                    {/* <th>Edit</th> */}
                     <th>Delete</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                    <td><button onClick={handleDelete}> X </button></td>
-                </tr>
-
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                    <td><button onClick={handleDelete}> X </button></td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                    <td><button onClick={handleDelete}> X </button></td>
-                </tr>
 
                 {
                     props.data.map((favLink, index)=>{
