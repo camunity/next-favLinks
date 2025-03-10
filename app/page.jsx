@@ -19,7 +19,10 @@ function HomePage(){
 
         console.log(favLink, "in HomePage")
 
-        setNewFavLink(favLink)
+            let newFavLinks = [...FavLinks,favLink]
+           
+
+        setFavLinks(newFavLinks)
     }
     
 
@@ -34,7 +37,7 @@ function HomePage(){
 
             
             
-            <Table data={newFavLink}/>
+            <Table data={FavLinks}/>
             
 
 
