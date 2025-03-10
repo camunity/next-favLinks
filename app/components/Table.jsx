@@ -13,25 +13,19 @@ function Table(props){
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                </tr>
 
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                </tr>
+                {
+                    props.data.map((favLink ) => {
 
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                </tr>
+                        return(<tr key={favLink.name}>
+                            <td>{favLink.name}</td>
+                            <td>{favLink.URL}</td>
+                            <td><button id={favLink.name} onClick={e => props.dataMutate(props.data.filter((favL) => favL.name != e.target.getAttribute("id")))}>remove</button></td>
+                        </tr>)
 
-                <tr>
-                    <td>{props.data.name}</td>
-                    <td>{props.data.URL}</td>
-                </tr>
+                    })
+
+                }
 
             </tbody>
 
