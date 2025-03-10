@@ -12,14 +12,16 @@ import Table from "./components/Table"
 
 function HomePage(){   
 
-    const [newFavLink, setNewFavLink] = useState({})
+    const [favLinks, setFavLinks] = useState([]) // this is an array of objects
     
     function handleNewFavLink(favLink){
         // favlink is an object containing a {name, URL}
 
         console.log(favLink, "in HomePage")
+        let newFavLinks = [...favLinks, favLink] // this is a new array of objects
 
-        setNewFavLink(favLink)
+        setFavLinks(newFavLinks) // this is the new state of our component
+
     }
     
 
@@ -34,7 +36,7 @@ function HomePage(){
 
             
             
-            <Table data={newFavLink}/>
+            <Table data={favLinks}/>
             
 
 
