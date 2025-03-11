@@ -25,6 +25,13 @@ function HomePage(){
 
         setFavLinks(newFavLinks)
     }
+
+    function handleDelete(arrysIndex){
+        // favlink is an object containing a {name, URL}
+        favLinks.splice(arrysIndex, 1)
+
+        setFavLinks(favLinks)
+    }
     
 
     return (
@@ -38,7 +45,7 @@ function HomePage(){
 
             
             
-            <Table data={favLinks}/>
+            <Table data={favLinks} deleteFavLink={handleDelete} />
             
 
 

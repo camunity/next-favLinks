@@ -6,7 +6,11 @@ function Table(props){
 
     function handleDelete(e){
         let arryIndex = e.target.id
-        setTempFavLinks(props.data.splice(arryIndex, 1))
+        // setTempFavLinks(props.data.splice(arryIndex, 1))
+
+
+        
+        props.deleteFavLink(arryIndex)
     }
 
     return(
