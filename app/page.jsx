@@ -12,32 +12,21 @@ import Table from "./components/Table"
 
 function HomePage(){   
 
-    const [newFavLink, setNewFavLink] = useState({})
+    const [favLinks, setFavLinks] = useState([])
     
     function handleNewFavLink(favLink){
-        // favlink is an object containing a {name, URL}
-
         console.log(favLink, "in HomePage")
-
-        setNewFavLink(favLink)
-    }
-    
+        let newFavLinks = [...favLinks, favLink]
+        setFavLinks(newFavLinks)
+}
 
     return (
         <div>
             <h1> FavLinks </h1>
-       
-       {/* The Form is responsible for gathering the data
-        and alerting the HomePage when it needs to pass it to the table  */}
-           
+            { }
             <Form submitFavLink={handleNewFavLink} /> 
 
-            
-            
-            <Table data={newFavLink}/>
-            
-
-
+            <Table data={favLinks}/>
         </div>
     )
 }
