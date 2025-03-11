@@ -1,42 +1,39 @@
 
 function Table(props){
 
+
     return(
-        // Some code will go in here
+        // some code will go in here
         <table>
-            
+            {/* table header */}
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>URL</th>
+                    <th> Name</th>
+                    <th> URL</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                </tr>
+               
+    
 
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                </tr>
-
-                <tr>
-                    <td>{props.data.name}</td>
-                    <td>{props.data.URL}</td>
-                </tr>
-
+                {
+                    props.data.map((favLink, index)=>{  //to create a function
+                     return(<tr key={index}>  {/*key to run perfectly*/}
+                        <td>{favLink.name}</td>
+                        <td>{favLink.URL}</td>
+                    </tr>)
+                    })
+                    
+                }
+                
             </tbody>
 
         </table>
+
+        
     )
+
 
 }
 
