@@ -7,18 +7,6 @@ function Form(props){
     const [URL, setURL] = useState("")
     
     function handleClick(){
-       // reference the data inside of the input
-
-        //    console.log(name, URL)
-
-        // alert the parent component to pass some data as props to the table
-        // take the last value of the input and send it to the table
-
-        // let favLink = {
-        //     name: name,
-        //     URL: URL
-        // }
-
         props.submitFavLink({name, URL})
 
     }
