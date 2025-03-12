@@ -13,25 +13,18 @@ function Table(props){
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                </tr>
-
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                </tr>
-
-                <tr>
-                    <td>{props.data.name}</td>
-                    <td>{props.data.URL}</td>
-                </tr>
+                
+                {
+                    props.data.map((favLink,i)=>{
+                       
+                       return (<tr key={i}>
+                            <td>{favLink.name}</td>
+                            <td>{favLink.URL}</td>
+                
+                        </tr> )
+                
+                     })
+                }
 
             </tbody>
 
