@@ -1,10 +1,8 @@
 
-function Table(props){
-
-    return(
-        // Some code will go in here
+function Table(props) {
+    return (
+      // some code will go here 
         <table>
-            
             <thead>
                 <tr>
                     <th>Name</th>
@@ -13,31 +11,17 @@ function Table(props){
             </thead>
 
             <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                </tr>
-
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                </tr>
-
-                <tr>
-                    <td>{props.data.name}</td>
-                    <td>{props.data.URL}</td>
-                </tr>
-
+                {
+                    props.data.map((favLink, index) => (
+                        <tr key={index}>
+                            <td>{favLink.name}</td>
+                            <td>{favLink.URL}</td>
+                        </tr>
+                    ))
+                }
             </tbody>
-
         </table>
-    )
-
+    );
 }
 
-export default Table
+export default Table;
