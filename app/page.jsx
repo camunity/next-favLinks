@@ -4,13 +4,59 @@
 
 "use client";
 
-import { useState } from "react" // we use this to add state to our components
+import { useState, useEffect } from "react" // we use this to add state to our components
 // state lets us keep track of changing data and show it in the component
 
 import Form from "./components/Form"
 import Table from "./components/Table"
 
 function HomePage(){   
+
+    // To do: connect to our database to get the saved favlinks
+
+    async function getData(){
+        let url = "http://localhost:8000/favlinks"
+
+        //use the fetch api to call this URL and get the data.
+
+        let response = await fetch(url)
+
+        let data = await response.json()
+
+        //console.log(data)
+
+        setFavLinks(data)
+    }
+
+    useEffect(() =>{
+        // if you want to trgger a function when a compenent fully loads
+        // create a useEffect and call whatever you need
+
+        getData()
+
+    }, [])
+
+//    // async function createFavLink(){
+//         const myHeaders = new Headers();
+//         myHeaders.append("Content-Type", "application/json");
+
+//         const raw = JSON.stringify({
+//             "name": name,
+//             "URL": URL
+//         });
+
+//         const requestOptions = {
+//             method: "POST",
+//             headers: myHeaders,
+//             body: raw,
+//             redirect: "follow"
+
+//         };
+
+//         let response = await fetch("localhost:8000/favlink", requestOptions)
+//     //}
+
+    getData()
 
     const [favLinks, setFavLinks] = useState([])
     

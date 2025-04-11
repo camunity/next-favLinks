@@ -19,7 +19,7 @@ function Table(props){
                 
                 return(<tr key={index}>
                     <td>{favLink.name}</td>
-                    <td>{favLink.URL}</td>
+                    <td>{favLink.url}</td>
                 </tr>)
 
                 })

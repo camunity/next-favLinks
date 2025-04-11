@@ -19,7 +19,7 @@ function Form(props){
         //     URL: URL
         // }
 
-        props.submitFavLink({name, URL})
+        props.submitFavLink({name, url: URL})
 
     }
 
