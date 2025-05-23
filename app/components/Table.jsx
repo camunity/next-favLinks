@@ -1,43 +1,31 @@
-
-function Table(props){
-
-    return(
-        // Some code will go in here
-        <table>
-            
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>URL</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>Github</td>
-                    <td>https://www.github.com</td>
-                </tr>
-
-                <tr>
-                    <td>Google</td>
-                    <td>https://www.google.com</td>
-                </tr>
-
-                <tr>
-                    <td>Amazon</td>
-                    <td>https://www.amazon.com</td>
-                </tr>
-
-                <tr>
-                    <td>{props.data.name}</td>
-                    <td>{props.data.URL}</td>
-                </tr>
-
-            </tbody>
-
-        </table>
-    )
-
+function Table({ data, deleteLink, editLink }) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((link, index) => (
+          <tr key={index}>
+            <td>{link.name}</td>
+            <td>
+              <a href={link.URL} target="_blank" rel="noreferrer">
+                {link.URL}
+              </a>
+            </td>
+            <td>
+              <button onClick={() => editLink(index)}>Edit</button>
+              <button onClick={() => deleteLink(index)}>Delete</button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
-export default Table
+export default Table;

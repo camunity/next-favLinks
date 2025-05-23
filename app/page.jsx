@@ -1,44 +1,52 @@
-// Components are functions that return some JSX
-
-// JSX is a javascript syntax in React to create our HTML elements
-
 "use client";
 
-import { useState } from "react" // we use this to add state to our components
-// state lets us keep track of changing data and show it in the component
+import { useEffect, useState } from 'react';
+import Form from './components/Form';
+import Table from './components/Table';
 
-import Form from "./components/Form"
-import Table from "./components/Table"
+function HomePage() {
+  const [isClient, setIsClient] = useState(false);
+  const [favLinks, setFavLinks] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-function HomePage(){   
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
-    const [newFavLink, setNewFavLink] = useState({})
-    
-    function handleNewFavLink(favLink){
-        // favlink is an object containing a {name, URL}
+  function submitFavLink(link) {
+    setFavLinks([...favLinks, link]);
+  }
 
-        console.log(favLink, "in HomePage")
+  function deleteLink(index) {
+    const updated = favLinks.filter((_, i) => i !== index);
+    setFavLinks(updated);
+  }
 
-        setNewFavLink(favLink)
-    }
-    
+  function editLink(index) {
+    setSelectedIndex(index);
+  }
 
-    return (
-        <div>
-            <h1> FavLinks </h1>
-       
-       {/* The Form is responsible for gathering the data
-        and alerting the HomePage when it needs to pass it to the table  */}
-           
-            <Form submitFavLink={handleNewFavLink} /> 
+  function updateLink(updatedLink) {
+    const updatedLinks = favLinks.map((link, i) =>
+      i === selectedIndex ? updatedLink : link
+    );
+    setFavLinks(updatedLinks);
+    setSelectedIndex(null);
+  }
 
-            
-            
-            <Table data={newFavLink}/>
-            
+  if (!isClient) return null;
 
-
-        </div>
-    )
+  return (
+    <div>
+      <h1>FavLinks</h1>
+      <Form
+        submitFavLink={submitFavLink}
+        selectedLink={selectedIndex !== null ? favLinks[selectedIndex] : null}
+        updateLink={updateLink}
+      />
+      <Table data={favLinks} deleteLink={deleteLink} editLink={editLink} />
+    </div>
+  );
 }
-export default HomePage
+
+export default HomePage;

@@ -1,61 +1,50 @@
-import {useState} from 'react'
+import { useEffect, useState } from 'react';
 
-function Form(props){
+function Form({ submitFavLink, selectedLink, updateLink }) {
+  const [name, setName] = useState('');
+  const [URL, setURL] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
 
-    // state - a way for us to set and reference data that changes in our component
-    const [name, setName] = useState("")
-    const [URL, setURL] = useState("")
-    
-    function handleClick(){
-       // reference the data inside of the input
-
-        //    console.log(name, URL)
-
-        // alert the parent component to pass some data as props to the table
-        // take the last value of the input and send it to the table
-
-        // let favLink = {
-        //     name: name,
-        //     URL: URL
-        // }
-
-        props.submitFavLink({name, URL})
-
+  useEffect(() => {
+    if (selectedLink) {
+      setName(selectedLink.name);
+      setURL(selectedLink.URL);
+      setIsEditing(true);
     }
+  }, [selectedLink]);
 
-
-    function handleNameInputChange(event){
-        // we can use the event object to look at our input
-        console.log(event.target.value)
-        // save this data for later
-        setName(event.target.value) // update the state with our data 
+  function handleClick(e) {
+    e.preventDefault();
+    const linkData = { name, URL };
+    if (isEditing) {
+      updateLink(linkData);
+      setIsEditing(false);
+    } else {
+      submitFavLink(linkData);
     }
+    setName('');
+    setURL('');
+  }
 
-    function handleURLInputChange(event){
-        // we can use the event object to look at our input
-        console.log(event.target.value)
-        // save this data for later
-        setURL(event.target.value) // update the state with our data
-    }
-
-    
-    return(
-        <div>
-            {/* Form for the user to input data */}
-            <form>
-                <label> Name </label>
-                <input type="text" onChange={handleNameInputChange}/>
-
-                <label> URL </label>
-                <input type="text" onChange={handleURLInputChange}/>
-            </form>
-
-            <button onClick={handleClick}> Submit </button>
-
-        </div>
-    )
+  return (
+    <form onSubmit={handleClick}>
+      <label>Name</label>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required
+      />
+      <label>URL</label>
+      <input
+        type="text"
+        value={URL}
+        onChange={(e) => setURL(e.target.value)}
+        required
+      />
+      <button type="submit">{isEditing ? 'Update' : 'Submit'}</button>
+    </form>
+  );
 }
 
-export default Form
-
-
+export default Form;
